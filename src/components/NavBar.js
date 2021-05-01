@@ -3,36 +3,47 @@ import { Spin as Hamburger } from 'hamburger-react'
 import {useState, useEffect} from "react"
 
 
-function NavBar() {
+function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSingleLaunch, setSingleLaunchpad }) {
 
 // ---------- States ---------- //
     const [isOpen, setOpen] = useState(false)
-
-// ---------- useEffects that will pull all Rockets Launches and Launchpads ---------- //
-//*  Setting State here for Rockets Launches and Launchpads   *//
-
-
-
-
-
+    
+// ---------- Menu Buttons on clicks ---------- //
+    const handleRocket = (r) => {
+        setSingleRocket(r)
+    }
+    
+    const handleLaunch = (l) => {
+        setSingleLaunch(l)
+    }
+    
+    const handleLaunchpad = (lp) => {
+        setSingleLaunchpad(lp)
+    }
+    
 // ---------- Map for NavBar Rockets Launches Launchpads ---------- //
-    const allRockets = (
-        <MenuItem>
-            Rocket
-        </MenuItem>
-    )
+    const seeRockets = allRockets.map(r => {
+        return(
+            <MenuItem key={r.id} onClick={() => handleRocket(r)}>
+                {r.name}
+            </MenuItem>
+        )
+    })
+    const seeLaunches = allLaunches.map(l => {
+        return(
+            <MenuItem key={l.id} onClick={() => handleLaunch(l)}>
+                {l.name}
+            </MenuItem>
+        )
+    })
+    const seeLaunchpads = allLaunchpads.map(lp => {
+        return(
+            <MenuItem key={lp.id} onClick={() => handleLaunchpad(lp)}>
+                {lp.name}
+            </MenuItem>
+        )
+    })
 
-    const allLaunches = (
-        <MenuItem>
-            Launch
-        </MenuItem>
-    )
-
-    const allLaunchpads = (
-        <MenuItem>
-            Launchpad
-        </MenuItem>
-    )
 
 // ---------- DOM ---------- //
     return(
@@ -63,7 +74,7 @@ function NavBar() {
                                     ROCKETS
                                 </MenuButton>
                                 <MenuList>
-                                    {allRockets}
+                                    {seeRockets}
                                 </MenuList>
                             </Menu>
                         </GridItem>
@@ -82,7 +93,7 @@ function NavBar() {
                                     LAUNCHES
                                 </MenuButton>
                                 <MenuList>
-                                    {allLaunches}
+                                    {seeLaunches}
                                 </MenuList>
                             </Menu>
                         </GridItem>
@@ -101,7 +112,7 @@ function NavBar() {
                                     LAUNCHPADS
                                 </MenuButton>
                                 <MenuList>
-                                    {allLaunchpads}
+                                    {seeLaunchpads}
                                 </MenuList>
                             </Menu>
                         </GridItem>
