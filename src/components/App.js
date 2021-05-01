@@ -2,8 +2,12 @@ import '../App.css';
 import {useState, useEffect} from "react"
 import { Switch, Route } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import NavBar from './NavBar'
 import { Button, chakra, Grid, Flex, Box, Text, Spacer } from "@chakra-ui/react"
+import NavBar from './NavBar'
+import DashboardMain from './DashboardMain'
+import DashboardRocket from './DashboardRocket'
+import DashboardLaunch from './DashboardLaunch'
+import DashboardLaunchpad from './DashboardLaunchpad'
 
 function App() {
 
@@ -15,10 +19,6 @@ function App() {
   const [singleRocket, setSingleRocket] = useState({})
   const [singleLaunch, setSingleLaunch] = useState({})
   const [singleLaunchpad, setSingleLaunchpad] = useState({})
-
-  console.log(singleRocket)
-  console.log(singleLaunch)
-  console.log(singleLaunchpad)
 
 // ---------- useEffects that will pull all Rockets Launches and Launchpads ---------- //
 //*  Setting State here for Rockets Launches and Launchpads   *//
@@ -39,14 +39,42 @@ function App() {
   }, [])
 
   return (
-    <NavBar 
-      allRockets={allRockets} 
-      allLaunches={allLaunches}
-      allLaunchpads={allLaunchpads}
-      setSingleRocket={setSingleRocket}
-      setSingleLaunch={setSingleLaunch}
-      setSingleLaunchpad={setSingleLaunchpad}
-    />
+    <Box>
+      <NavBar 
+        allRockets={allRockets} 
+        allLaunches={allLaunches}
+        allLaunchpads={allLaunchpads}
+        setSingleRocket={setSingleRocket}
+        setSingleLaunch={setSingleLaunch}
+        setSingleLaunchpad={setSingleLaunchpad}
+      />
+      <Box alignContent="center">
+        <Switch>
+          <Route path="/rocket">
+            <DashboardRocket
+              singleRocket={singleRocket}
+            />
+          </Route>
+          <Route path="/launch">
+            <DashboardLaunch
+              singleLaunch={singleLaunch}
+            />
+          </Route>
+          <Route path="/launchpad">
+            <DashboardLaunchpad
+              singleLaunchpad={singleLaunchpad}
+            />
+          </Route>
+          <Route path="/">
+            <DashboardMain
+              allRockets={allRockets} 
+              allLaunches={allLaunches}
+              allLaunchpads={allLaunchpads}
+            />
+          </Route>
+        </Switch>
+      </Box>
+    </Box>
   );
 }
 

@@ -1,24 +1,29 @@
 import { Box, Center, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
 import { Spin as Hamburger } from 'hamburger-react'
 import {useState, useEffect} from "react"
+import { useHistory } from "react-router-dom"
 
 
 function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSingleLaunch, setSingleLaunchpad }) {
-
+// ---------- History ---------- //
+    const history = useHistory()
 // ---------- States ---------- //
     const [isOpen, setOpen] = useState(false)
     
 // ---------- Menu Buttons on clicks ---------- //
     const handleRocket = (r) => {
         setSingleRocket(r)
+        history.push("/rocket")
     }
     
     const handleLaunch = (l) => {
         setSingleLaunch(l)
+        history.push("/launch")
     }
     
     const handleLaunchpad = (lp) => {
         setSingleLaunchpad(lp)
+        history.push("/launchpad")
     }
     
 // ---------- Map for NavBar Rockets Launches Launchpads ---------- //
