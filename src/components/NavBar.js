@@ -1,4 +1,4 @@
-import { Box, Center, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
+import { Box, Center,Flex, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
 import { Spin as Hamburger } from 'hamburger-react'
 import {useState, useEffect} from "react"
 import { useHistory } from "react-router-dom"
@@ -78,7 +78,7 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
                                 >
                                     ROCKETS
                                 </MenuButton>
-                                <MenuList>
+                                <MenuList overflow="scroll" maxH="200px">
                                     {seeRockets}
                                 </MenuList>
                             </Menu>
@@ -97,7 +97,7 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
                                 >
                                     LAUNCHES
                                 </MenuButton>
-                                <MenuList>
+                                <MenuList overflow="scroll" maxH="200px">
                                     {seeLaunches}
                                 </MenuList>
                             </Menu>
@@ -116,7 +116,7 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
                                 >
                                     LAUNCHPADS
                                 </MenuButton>
-                                <MenuList>
+                                <MenuList overflow="scroll" maxH="200px">
                                     {seeLaunchpads}
                                 </MenuList>
                             </Menu>
