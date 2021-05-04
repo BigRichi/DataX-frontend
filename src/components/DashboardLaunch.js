@@ -1,6 +1,11 @@
-import {RadioGroup, HStack, Radio, Input, FormControl, FormLabel, FormErrorMessage, FormHelperText, AspectRatio, Box, Stack, Spacer, Center, Flex, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
+import {RadioGroup, HStack, Radio, Input, FormControl, FormLabel, FormHelperText, AspectRatio, Box, Text, Grid, GridItem} from "@chakra-ui/react"
+import {useState, useEffect} from "react"
+
 
 function DashboardLaunch({singleLaunch}) {
+
+    const [allComments, setAllComments] = useState([])
+    const [newComment, setNewComment] = useState(false)
 
     const lastLaunchVideo = () => {
         if (singleLaunch.webcast === null) {
@@ -56,6 +61,18 @@ function DashboardLaunch({singleLaunch}) {
         })
         .then(resp => resp.json())
         .then(data => console.log(data))
+        //set all comments
+    }
+// Move this up
+    useEffect(() => {
+        fetch(`http://localhost:3000/launches/${singleLaunch.id}`)
+        .then(resp => resp.json())
+        .then(launch => {
+            setAllComments(launch.launch_reviews)
+        })
+    }, [newComment])
+
+    const comments = () =>{
 
     }
 
@@ -74,7 +91,6 @@ function DashboardLaunch({singleLaunch}) {
                 </AspectRatio>
             </Box>
             <Box w="100%" h="500px" bgGradient="linear(to-t, blue.900, blue.200)" >
-
                 <form onSubmit={handelForm}>
                     <FormControl id="present" isRequired>
                         <FormLabel>Were you present at during the launch</FormLabel>
@@ -96,8 +112,8 @@ function DashboardLaunch({singleLaunch}) {
                     </FormControl>
                     <Input type="submit"/>
                 </form>
-
             </Box>
+
         </Box>
     )
 }

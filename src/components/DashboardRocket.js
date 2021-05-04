@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Stack, Spacer, Center, Flex, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
+import { AspectRatio, Box, Stack,Image, Text,  Grid, GridItem} from "@chakra-ui/react"
 
 function DashboardRocket({singleRocket}) {
 

@@ -1,8 +1,7 @@
-import '../App.scss';
+import '../App.css';
 import {useState, useEffect} from "react"
 import { Switch, Route } from "react-router-dom"
-import { useHistory } from "react-router-dom"
-import { Button, chakra, Grid, Flex, Box, Text, Spacer } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import NavBar from './NavBar'
 import DashboardMain from './DashboardMain'
 import DashboardRocket from './DashboardRocket'

@@ -1,6 +1,6 @@
-import { Box, Center,Flex, Button, Grid, Image, Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
+import { Box, Grid,Text, GridItem, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
 import { Spin as Hamburger } from 'hamburger-react'
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
 
@@ -53,6 +53,9 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
         )
     })
 
+    const handelLogo = () => {
+        history.push("/")
+    }
 
 // ---------- DOM ---------- //
     return(
@@ -63,6 +66,7 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
                 bgClip="text"
                 fontSize="6xl"
                 fontWeight="semibold"
+                onClick={handelLogo}
                 >
                     DataX
                 </Text>
