@@ -35,11 +35,15 @@ function NavBar({allRockets, allLaunches, allLaunchpads, setSingleRocket, setSin
         )
     })
     const seeLaunches = allLaunches.map(l => {
+        if (l.upcoming == false){
         return(
             <MenuItem key={l.id} onClick={() => handleLaunch(l)}>
                 {l.name}
             </MenuItem>
         )
+        }else {
+            return null
+        }
     })
     const seeLaunchpads = allLaunchpads.map(lp => {
         return(
