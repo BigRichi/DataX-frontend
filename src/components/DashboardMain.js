@@ -1,6 +1,7 @@
 import { Box, Flex, Text, Grid, GridItem} from "@chakra-ui/react"
 import RocketLaunchSuccessRate from './RocketLaunchSuccessRate'
 import { format } from "date-fns"
+import UpcomingLaunchCard from "./UpcomingLaunchCard"
 
 function DashboardMain({allRockets, allLaunches, allLaunchpads}) {
 
@@ -9,12 +10,7 @@ function DashboardMain({allRockets, allLaunches, allLaunchpads}) {
         if (l.upcoming == true){
             return(
                 <Box key={l.id} padding="4">
-                    <Text fontFamily="'Dancing Script', cursive" fontWeight="200" fontSize="md">
-                    {l.name} Launch on {l.launch_date_time.substring(0,10)}
-                    </Text>
-                    <Text fontFamily="'Dancing Script', cursive" fontWeight="200" fontSize="md">
-                    Launching the {l.rocket.name} from {l.launchpad.full_name}
-                    </Text>
+                    <UpcomingLaunchCard l={l} />
                 </Box>
             )
         }else {
@@ -24,14 +20,13 @@ function DashboardMain({allRockets, allLaunches, allLaunchpads}) {
 
     return(
         <Box>
-            <Box w="100%" h="500px" bgGradient="linear(to-t, blue.900, blue.200)" >
+            <Box w="100%" h="500px" bgGradient="linear(to-t, blue.900, blue.200)" paddingBottom="20">
+                <Text fontFamily="'Dancing Script', cursive" fontWeight="200" fontSize="4xl"> Rocket Launch Success rate  </Text>
                 <RocketLaunchSuccessRate allRockets={allRockets}/>
             </Box>
-            <Box w="100%" h="500px" bgGradient="linear(to-t, blue.200, blue.900)" >
-                <Flex>
-                    <Text fontFamily="'Dancing Script', cursive" fontWeight="200" fontSize="4xl">Upcoming Launches </Text>
-                    {seeLaunches}
-                </Flex>
+            <Box w="100%" h="500px" overflow="scroll" bgGradient="linear(to-t, blue.200, blue.900)" paddingTop="20" paddingBottom="20">
+                <Text fontFamily="'Dancing Script', cursive" fontWeight="200" fontSize="4xl">Upcoming Launches </Text>
+                {seeLaunches}
             </Box>
         </Box>
     )

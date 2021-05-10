@@ -15,6 +15,8 @@ function App() {
   const [allLaunches, setAllLaunches] = useState([])
   const [allLaunchpads, setAllLaunchpads] = useState([])
 
+  // const [allComments, setAllComments] = useState([])
+
   const [singleRocket, setSingleRocket] = useState({})
   const [singleLaunch, setSingleLaunch] = useState({})
   const [singleLaunchpad, setSingleLaunchpad] = useState({})
@@ -37,6 +39,37 @@ function App() {
       .then(launchpadsArr => setAllLaunchpads(launchpadsArr))
   }, [])
 
+// ---------- New Comment form handler ---------- //
+const handelForm = (e) => {
+    e.preventDefault()
+    const p = e.target.present.value
+    const present = () => {
+        if (p === "true"){
+            return Boolean(p)
+        }else{
+            return Boolean(!p)
+        }
+    }
+    
+    const newComment = {
+        launch_id: singleLaunch.id,
+        reviewer: e.target.reviewer.value,
+        present_at_launch: present(),
+        comment: e.target.comment.value
+    }
+
+    fetch("http://localhost:3000/launch_reviews",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'Application/json',
+            'Accept': 'Application/json'
+        },
+        body: JSON.stringify(newComment)
+    })
+    .then(resp => resp.json())
+    .then(launch => setSingleLaunch(launch))
+}
+
   return (
     <Box>
       <NavBar 
@@ -57,6 +90,8 @@ function App() {
           <Route path="/launch">
             <DashboardLaunch
               singleLaunch={singleLaunch}
+              // allComments={allComments}
+              handelForm={handelForm}
             />
           </Route>
           <Route path="/launchpad">
